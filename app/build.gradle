@@ -1,0 +1,68 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'com.alipay.apollo.baseline.config'
+}
+
+android {
+    compileSdk 31
+
+    defaultConfig {
+        applicationId "com.example.alibabapush"
+        minSdk 21
+        targetSdk 31
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    signingConfigs{
+        release{
+            keyAlias 'key0'
+            keyPassword 'Rhksgud1025@'
+            storeFile file('Untitled')
+            storePassword 'Rhksgud1025@'
+        }
+        debug{
+            v1SigningEnabled true
+            keyAlias 'key0'
+            keyPassword 'Rhksgud1025@'
+            storeFile file('Untitled')
+            storePassword 'Rhksgud1025@'
+        }
+    }
+
+    buildTypes {
+
+        debug{
+//            signingConfigs signingConfigs.debug
+            minifyEnabled false
+//            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro','mpProguard.cfg'
+        }
+
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = '11'
+    }
+}
+
+dependencies {
+
+    implementation platform("com.mpaas.android:$mpaas_artifact:$mpaas_baseline")
+    implementation 'androidx.core:core-ktx:1.8.0'
+    implementation 'androidx.appcompat:appcompat:1.4.2'
+    implementation 'com.google.android.material:material:1.6.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'com.mpaas.android:scan'
+    implementation 'com.mpaas.android:push'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+}
